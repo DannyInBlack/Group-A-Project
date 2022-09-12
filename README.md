@@ -1,7 +1,7 @@
 # Group-A-Project
 Instagram clone with many shared functionalities such as adding posts, following people, etc
 
-##steps to run: 
+## steps to run: 
 1.download full project and move it inside xampp\htdocs the run a cmd in that directory
 2.Run composer install
 3.Run cp .env.example .env then fix all data in the file
