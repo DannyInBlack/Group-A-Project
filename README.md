@@ -2,7 +2,7 @@
 Instagram clone with many shared functionalities such as adding posts, following people, etc
 
 ## steps to run: 
-1.download full project and move it inside xampp\htdocs the run a cmd in that directory  
+1.download full project and place it somewhere safe 
 2.Run composer install  
 3.Create a database for the project (eg: laravel)
 4.Run cp .env.example .env then fix all data in the file  
