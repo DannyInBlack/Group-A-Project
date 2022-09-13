@@ -20,7 +20,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'Fullname',
+        'username',
+        'phone',
         'email',
         'password',
     ];
@@ -43,4 +45,20 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts(){
+        return $this->hasMany('App\Models\Post');
+    }
+    public function comments()
+    {
+        return $this->belongsToMany(Post::class,'comments');
+    }
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class,'likes');
+    }
+    public function follows()
+    {
+        return $this->belongsToMany(User::class,'follows','follower_id','followed_id');
+    }   
 }

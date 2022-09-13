@@ -48,7 +48,7 @@
                     </a>
                 @endif
                 <a href="{{ route('register') }}" class="text-sm text-gray-600 hover:text-gray-900 ml-3">
-                     Register an account  
+                     Create an account 
                 </a>
                 <x-primary-button class="ml-3">
                     {{ __('Log in') }}

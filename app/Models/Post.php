@@ -25,6 +25,22 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+    public function media(){
+        return $this->hasMany('App\Models\Media');
+    }
+    public function comments()
+    {
+        return $this->belongsToMany(User::class,'comments')->withPivot('body');;
+    }
+    public function likes()
+    {
+        return $this->belongsToMany(User::class,'likes');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'post_tag');
+    }
+    
 
     
 }

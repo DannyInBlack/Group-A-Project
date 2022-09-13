@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 
 return new class extends Migration
 {
@@ -14,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table){
-
+        //Add posts table
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title',192);
             $table->text('body');
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreignIdFor(User::class);
+            $table->bigInteger('user_id')->default(12);
+            $table->string('img',300);
+                
 
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
      */
     public function down()
     {
+        //Remove the table
         Schema::dropIfExists('posts');
     }
 };

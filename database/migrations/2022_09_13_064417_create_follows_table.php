@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('posts', function(Blueprint $table){
-
-            $table->string('img',255);
-
+        Schema::create('follows', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('follower_id')->default(12);
+            $table->bigInteger('followed_id')->default(12);
         });
     }
 
@@ -28,11 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
-        Schema::table('posts', function (Blueprint $table) {
-
-            $table->dropColumn('img');
-            
-        });
+        Schema::dropIfExists('follows');
     }
 };

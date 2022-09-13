@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBlogPost;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 
 
 class HomeController extends Controller
@@ -32,7 +34,15 @@ class HomeController extends Controller
 
         $posts = Post::paginate(10);
 
-
+        $user=User::first();
+        $user2=User::find(2);
+        $user->follows()->attach($user2);
+        $post=Post::first();
+        // $post->comments()->attach($user,['body'=>':> it worked']);
+        // dd(($post->likes)[0]);
+        // foreach ($post->likes as $key) {
+            
+        // }
 
         return view('posts.index')->with(['posts' => $posts]);  
     }
