@@ -19,7 +19,7 @@
 </p>
 <p>Posts:
     <ul>
-    @foreach($user->posts as $post)
+    @foreach($user->posts() as $post)
     <li> 
     <a href="{{ route('posts.show',['id' => $post['id']]) }}">{{ $post['title'] }}</a>
     

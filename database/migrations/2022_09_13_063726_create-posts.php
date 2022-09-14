@@ -16,11 +16,9 @@ return new class extends Migration
         //Add posts table
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title',192);
             $table->text('body');
             $table->timestamps();
             $table->bigInteger('user_id')->default(12);
-            $table->string('img',300);
                 
 
             $table->softDeletes();

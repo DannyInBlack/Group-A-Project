@@ -6,13 +6,16 @@ use App\Http\Requests\StoreBlogPost;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Media;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 
 
-class HomeController extends Controller
+
+class   HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -34,6 +37,7 @@ class HomeController extends Controller
 
         $posts = Post::paginate(10);
 
+
         $user=User::first();
         $user2=User::find(2);
         $user->follows()->attach($user2);
@@ -44,7 +48,9 @@ class HomeController extends Controller
             
         // }
 
-        return view('posts.index')->with(['posts' => $posts]);  
+        return view('posts.index')->with([
+            'posts' => $posts,
+    ]);  
     }
 
     public function deleted(){
@@ -66,16 +72,52 @@ class HomeController extends Controller
         if(isset($validatedData['img'])     ){
             $path = $validatedData['img']->store('postImages', 'public');
         }
+        
+        $id = Auth::id();
+
+        
+        $post = Post::create([
+            'body' => $validatedData['body'],
+            'user_id' => $id,
+        ]);
+
+        
+
+        Media::create([
+            'post_id' => $post['id'],
+            'media' => $path
+        ]);
+        
+
+        return redirect()->route('posts.index');
+    }
+    public function storeComment(Request $request){
+
+        $postId = $request->input('postId');
+        $body = $request->input('body');
+
+
 
         $id = Auth::id();
 
-
-        Post::create([  
-            'title' => $validatedData['title'], 
-            'body' => $validatedData['body'],
-            'img' => $path,
+        Comment::create([
             'user_id' => $id,
+            'post_id' => $postId,
+            'body' => $body,
         ]);
+
+        return redirect()->route('posts.index');
+    }
+
+    public function like(Request $request){
+
+        $postId = $request->input('postId');
+        $post = Post::find($postId) ;
+        $id = User::find(Auth::id());
+
+        $post->likes()->attach($id);
+
+        dd($post->likes);
 
         return redirect()->route('posts.index');
     }

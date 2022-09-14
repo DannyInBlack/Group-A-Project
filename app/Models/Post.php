@@ -30,7 +30,7 @@ class Post extends Model
     }
     public function comments()
     {
-        return $this->belongsToMany(User::class,'comments')->withPivot('body');;
+        return $this->hasMany('App\Models\Comment');
     }
     public function likes()
     {
