@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/posts', [HomeController::class,'index'])->name('posts.index');
+Route::get('/posts', [HomeController::class,'index'])->middleware(['auth', 'verified'])->name('posts.index');
 
 Route::get('/posts/create',  [HomeController::class, 'create'])->name('posts.create');
 
