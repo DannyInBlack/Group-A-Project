@@ -21,6 +21,7 @@ class ForgotPasswordController extends Controller implements ShouldQueue
     */
 
     use Queueable;
+    
 
     use SendsPasswordResetEmails;
 }
