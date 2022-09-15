@@ -11,4 +11,5 @@ Instagram clone with many shared functionalities such as adding posts, following
 7.Run php artisan serve  
 8.Run npm install  
 9.Run npm run dev  
-10.Run php artisan storage:link  
+10.Run php artisan storage:link
+11.Run php artisan queue:work
