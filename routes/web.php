@@ -18,8 +18,8 @@ use App\Http\Controllers\userController;
 Route::get('/', function () {
     return view('auth.login');
 });
-// ->middleware(['auth', 'verified'])
-Route::get('/dashboard', [PostController::class,'index'])->name('dashboard');
+// 
+Route::get('/dashboard', [PostController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
