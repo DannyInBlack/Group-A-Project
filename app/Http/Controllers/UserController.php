@@ -65,7 +65,7 @@ class userController extends Controller
         
 
 
-        return view('users.index')->with(['users'=> $users]);   
+        return view('users.index')->with(['users'=> $users, 'body' => $request['body']]);   
     }
 
 

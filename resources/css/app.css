@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.normal{
+    
+}
 .container{
     padding: 0 15%;
 
@@ -8,7 +12,7 @@
 .bio{
     display:grid;
     grid-template-columns: 1fr 2fr;
-    height: 16em;
+    height: 18em;
     padding: 1em 0 0 5em;
     border-bottom: 0.5px solid #dbdbdb;
 }
@@ -76,8 +80,11 @@
     display: inline-block;
     font-size: 1rem;
     line-height: 1.5;
-    cursor: pointer;
     color: black;
+}
+
+.profile-stats a {
+    text-decoration: none;
 }
 
 

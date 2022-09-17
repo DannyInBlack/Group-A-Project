@@ -28,17 +28,20 @@
                     @if(null!==$user->followers()->find(Auth::id()))
                         <form action="{{route('users.unfollow',['id'=>$user['id']])}}" method="POST">
                             @csrf
+                            <br>
                             <button type="submit" class="btn profile-edit-btn">Unfollow</button>
                         </form>
                     @else
                         @if(null!==$user->following()->find(Auth::id()))
                             <form action="{{route('users.follow',['id'=>$user['id']])}}" method="POST">
                                 @csrf
+                                <br>
                                 <button type="submit" class="btn profile-edit-btn">follow back</button>
                             </form>
                         @else
                         <form action="{{route('users.follow',['id'=>$user['id']])}}" method="POST">
                             @csrf
+                            <br>
                             <button type="submit" class="btn profile-edit-btn">follow</button>
                         </form>
                         @endif
@@ -55,7 +58,7 @@
                     @php($noposts=count($user->Posts))
                     {{-- <span>{{$noposts}}</span> --}}
                     <li><span class="profile-stat-count">{{$noposts}}</span> posts</li>
-                    <li><a href="{{route('users.followers',['id'=>$user['id']])}}"><span class="profile-stat-count">{{count($user->followers)}}</span> followers</a></li>
+                    <li><a href="{{route('users.followers',['id'=>$user['id']])}}"><span class="profile-stat-count ">{{count($user->followers)}}</span> followers</a></li>
                     
                     <li><a href="{{route('users.following',['id'=>$user['id']])}}"><span class="profile-stat-count">{{count($user->following)}}</span> following</a></li>
                     
