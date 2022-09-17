@@ -18,7 +18,7 @@
             <h1 class="profile-user-name">{{$user['username']}}</h1>
 
             @if($user['id']==Auth::id())
-              <a href="{{ route('users.edit',['id'=> $user['id']]) }}"> <button class="btn profile-edit-btn">>edit</button></a>
+              <a href="{{ route('users.edit',['id'=> $user['id']]) }}"> <button class="btn profile-edit-btn">edit</button></a>
                 @else   
                     @if(null!==$user->followers()->find(Auth::id()))
                         <form action="{{route('users.unfollow',['id'=>$user['id']])}}" method="POST">

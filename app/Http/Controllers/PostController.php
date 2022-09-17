@@ -142,7 +142,7 @@ class   PostController extends Controller
 
         $post->comments()->attach($user,['body'=>$body]);
 
-        return redirect()->route('dashboard');
+        return back();
     }
 
     public function like(Request $request){
@@ -155,7 +155,7 @@ class   PostController extends Controller
 
         // dd($post->likes);
 
-        return redirect()->route('dashboard');
+        return back();
     }
     public function unlike(Request $request){
 
@@ -167,7 +167,7 @@ class   PostController extends Controller
 
         // dd($post->likes);
 
-        return redirect()->route('dashboard');
+        return back();
     }
 
     public function show($id){

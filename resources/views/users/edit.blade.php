@@ -2,24 +2,37 @@
 
 <x-app-layout>
     <x-slot name="slot">
-
-        <form action="{{route('users.update',['id'=>$user['id']])}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <img src="{{ Storage::disk('public')->url($user['avatar'])}}">
-            upload a file only if you want to change ur avatar
-            <input type="file" name='avatar' value="{{$user['avatar']}}">
-            username
-            <input type="text" name="username" value="{{$user['username']}}">
-            bio
-            <input type="text" name="bio" value="{{$user['bio']}}">
-            
-            <input type="hidden" name="id" value="{{$user['id']}}">
-            
-            <button type="submit">change</button>
-            
-        </form>
-        <a href="{{route('dashboard')}}"><button>cancel</button></a>
-
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        <form action="{{route('users.update',['id'=>$user['id']])}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            @if($user['avatar'])
+                            <img style="width: 200px" src="{{ Storage::disk('public')->url($user['avatar'])}}">
+                            @endif
+                            <div class="mb-3">
+                                <label for="avatar" class="form-label"> Change your avatar</label>
+                                <input type="file" name='avatar' value="{{$user['avatar']}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="avatar" class="form-label"> Change your username</label>
+                                <input type="text" name="username" value="{{$user['username']}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="avatar" class="form-label"> Change your bio</label>
+                                <input type="text" name="bio" value="{{$user['bio']}}">
+                            </div>
+                            <input type="hidden" name="id" value="{{$user['id']}}">
+                            <div class="mb-3">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Change</button>
+                            </div>
+                        </form>
+                        <a href="{{route('dashboard')}}"><button class="bg-black hover:bg-black-700 text-white font-bold py-2 px-4 rounded">cancel</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </x-slot>
 </x-app-layout>

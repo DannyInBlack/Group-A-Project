@@ -38,26 +38,21 @@
               <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <div>
+        <div style="margin-top: 10px">
             @if(null !==$post->likes()->find(Auth::id()))
-            <form method="POST" action="{{route('posts.unlike',['postId'=>$post['id']])}}">
+            <form style="display: inline" method="POST" action="{{route('posts.unlike',['postId'=>$post['id']])}}">
                 @csrf
                 <button type="submit" style="background-color: transparent;"><img src="{{asset('images\liked.png')}}" width="20px" height="20px"></button>
             </form>
             @else
-            <form method="POST" action="{{route('posts.like',['postId'=>$post['id']])}}">
+            <form style="display: inline" method="POST" action="{{route('posts.like',['postId'=>$post['id']])}}">
                 @csrf
                 <button type="submit" style="background-color: transparent;"><img src="{{asset('images\like.png')}}" width="20px" height="20px"></button>
             </form>
             @endif
+            <span style="float: right"> {{ count($post->likes) }} Likes </span>
         </div>
         <ul>
-          <li>
-            
-          </li>
-      
-          <li>{{ count($post->likes) }} Likes</li>
-      
           <li style="font-size: 20px">
             {{ Str::limit($post['body'], 300, $end='.......'); }}
             @foreach($post->tags as $tag)
