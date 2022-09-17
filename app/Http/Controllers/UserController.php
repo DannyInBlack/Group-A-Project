@@ -103,7 +103,12 @@ class userController extends Controller
             $path=$user['avatar'];
         }
         
-        User::where('id',$id)->update(['avatar'=>$path,'username'=>$request['username'],'bio'=>$request['bio']]);
+        User::where('id',$id)->update([
+            'avatar'=>$path,
+            'username'=>$request['username'],
+            'bio'=>$request['bio'],
+            'gender'=>$request['gender']
+        ]);
 
         return redirect()->route('users.show',['id'=>$id]);
     }

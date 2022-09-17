@@ -25,6 +25,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('avatar',300)->nullable();
             $table->string('bio',300)->nullable();
+            $table->string('gender')->nullable();
         });
     }
 

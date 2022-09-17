@@ -9,8 +9,12 @@
             <div class="profile">
         <section class="bio">
             
-            <div class="profile-photo"> 
+            <div class="profile-photo">
+                @if($user['avatar']) 
                 <img src="{{ Storage::disk('public')->url($user['avatar'])}}">
+                @else
+                No profile photo
+                @endif
             </div>
     
             
@@ -58,9 +62,10 @@
             </div>
     
             <div class="profile-bio"> 
-                <p><span class="profile-real-name">{{$user['FullName']}}</span> </p>
-                <p><span class="profile-real-name"></span> {{$user['bio']}}</p>
-                <p><span class="profile-real-name"></span> {{$user['email']}}</p>
+                <p><span class="profile-real-name">Name: </span>{{$user['FullName']}} </p>    
+                <p><span class="profile-real-name">Gender: </span> {{$user['gender']}}</p>
+                <p><span class="profile-real-name">Email: </span> {{$user['email']}}</p>
+                <p><span class="profile-real-name">Bio: </span> {{$user['bio']}}</p>
            </div>
     
             </div>

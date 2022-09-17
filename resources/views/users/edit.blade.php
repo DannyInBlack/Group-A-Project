@@ -17,19 +17,23 @@
                                 <input type="file" name='avatar' value="{{$user['avatar']}}">
                             </div>
                             <div class="mb-3">
-                                <label for="avatar" class="form-label"> Change your username</label>
+                                <label for="username" class="form-label"> Change your username</label>
                                 <input type="text" name="username" value="{{$user['username']}}">
                             </div>
                             <div class="mb-3">
-                                <label for="avatar" class="form-label"> Change your bio</label>
+                                <label for="bio" class="form-label"> Change your bio</label>
                                 <input type="text" name="bio" value="{{$user['bio']}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="gender" class="form-label"> Change your gender</label>
+                                <input type="text" name="gender" value="{{$user['gender']}}">
                             </div>
                             <input type="hidden" name="id" value="{{$user['id']}}">
                             <div class="mb-3">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Change</button>
                             </div>
                         </form>
-                        <a href="{{route('dashboard')}}"><button class="bg-black hover:bg-black-700 text-white font-bold py-2 px-4 rounded">cancel</button></a>
+                        <a href="{{route('users.show',['id'=>Auth::id()])}}"><button class="bg-black hover:bg-black-700 text-white font-bold py-2 px-4 rounded">cancel</button></a>
                     </div>
                 </div>
             </div>
