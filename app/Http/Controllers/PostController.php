@@ -46,7 +46,8 @@ class   PostController extends Controller
 
     public function deleted(){
 
-        $posts = Post::onlyTrashed()->paginate(10);
+
+        $posts = Post::onlyTrashed()->where('user_id', Auth::id())->get();
 
         return view('posts.deleted')->with(['posts' => $posts]);
     }
@@ -177,40 +178,27 @@ class   PostController extends Controller
         return view('posts.view')->with(['post'=> $post]);  
     }
 
-    public function edit($id){
+    public function update($id){
 
-        $post = Post::find($id);
+        Post::withTrashed()->where('id',$id)->restore();
 
-        if(Auth::id() != $post->user['id']){
-            return redirect()->route('posts.index');
-        }
 
-        return view('posts.edit')->with(['post'=> $post]);  
-    }
-
-    public function update(StoreBlogPost $request, $id){
-        
-        $validatedData = $request->validated();
-
-        Post::find($id)->update([
-            'title' => $validatedData['title'],
-            'body' => $validatedData['body']
-        ]);
-
-        return redirect()->route('posts.index');           
+        return back();  
     }
     
     public function delete($id){
 
         $post = Post::find($id);
-
         if(Auth::id() != $post->user['id']){
             return redirect()->route('posts.index');
         }
+        
+        Post::where('id', $post['id'])->delete();
 
-        Post::where('id', $id)->delete();
+        $user = User::find(Auth::id());
 
-        return redirect()->route('posts.index');      
+        return view('users.show')
+        ->with(['user' => $user]);      
     }
 
 

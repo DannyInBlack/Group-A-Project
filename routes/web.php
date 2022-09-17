@@ -41,7 +41,6 @@ Route::post('/posts/comments',  [PostController::class, 'storeComment'])->name('
 Route::post('/posts/like',  [PostController::class, 'like'])->name('posts.like');
 Route::post('/posts/unlike',  [PostController::class, 'unlike'])->name('posts.unlike');
 Route::get('/posts/{id}',  [PostController::class, 'show'])->name('posts.show');
-Route::get('/posts/{id}/edit',  [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{id}',  [PostController::class, 'update'])->name('posts.update');
 Route::delete('/posts/{id}',  [PostController::class, 'delete'])->name('posts.delete');
 

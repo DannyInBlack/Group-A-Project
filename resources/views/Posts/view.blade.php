@@ -4,7 +4,6 @@
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-    
         {{-- name and avatar of the post poster dw --}}
         <div style="display: inline">
             <a class="nametag" href="{{route('users.show',['id'=>$post->user['id']])}}">
@@ -12,13 +11,23 @@
                 <h5 style="display: inline;">{{$post->user['username']}}</h5>
             </a>
         </div>
+        @if($post->user['id']==Auth::id())
         <div style="float: right;" class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Edit
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Delete Post</a></li>
+            <li>
+              <form method="POST" action="{{ route('posts.delete',['id'=>$post['id']])}}">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="dropdown-item">Delete Post</button>
+              </form>
+            </li>
           </ul>
         </div>
+        @endif
         
         <div id="carousel{{$post['id']}}" class="carousel slide" >
           <div class="carousel-inner">
