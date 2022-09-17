@@ -1,5 +1,7 @@
 # Group-A-Project
 Instagram clone with many shared functionalities such as adding posts, following people, etc
+Has working validation techniques using laravel breeze
+Requires MySQL
 
 ## steps to run: 
 1.download full project and place it somewhere safe   
